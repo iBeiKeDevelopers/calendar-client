@@ -1,0 +1,131 @@
+<!--index.wxml-->
+<template name="empty-img">
+  <view class="empty-img">
+    <image mode="aspectFit" src="../../assets/empty.png"></image>
+    <view>暂无活动</view>
+  </view>
+</template>
+<template name="loading">
+  <view wx:if="{{fail}}" class="network" bindtap="refresh">
+    <image mode="aspectFit" src="../../assets/network.png"></image>
+    <view>网络错误</view>
+    <view style="margin-top:4px">左右划一下日历就可以重试了</view>
+  </view>
+  <view wx:else class="loading">
+    <image mode="aspectFit" src="../../assets/loading.gif"></image>
+    <view>请等待</view>
+  </view>
+</template>
+<template name="control">
+  <view class="control">
+    <image mode="aspectFit" src="../../assets/left-arrow.png"></image>
+    <view>左右滑动以切换</view>
+    <image mode="aspectFit" src="../../assets/right-arrow.png"></image>
+  </view>
+</template>
+<view class="container">
+  <view class="header">
+    <view class="date">
+      <view class="week {{tab === 1 ? 'selected':''}}">第<span class="n">{{weekView.week}}</span>周</view>
+      <view class="d">
+        <view class="month">{{monthText}}</view>
+        <view class="year">{{year}}</view>
+      </view>
+    </view>
+    <open-data class="avatar" type="userAvatarUrl"></open-data>
+  </view>
+  <view class="dv"></view>
+  <view class="nav">
+    <view class="{{tab === 0 ? 'selected':''}}" data-id="0" bindtap="handleTabClick">Month</view>
+    <view class="{{tab === 1 ? 'selected':''}}" data-id="1" bindtap="handleTabClick">Week</view>
+    <image class="ibeike" mode="aspectFit" src="/assets/ibeike.png" bindtap="showHelp"></image>
+  </view>
+
+  <view class="calendar {{tab === 0?'c1': 'c2'}}" style="height: {{calendarHeight}}px;">
+    <view class="tab1" id="tab1">
+      <view class="calendar-wrapper">
+        <view class="calendar-row h">
+          <view wx:for="MTWTFSS" wx:key="*this">{{item}}</view>
+        </view>
+
+        <swiper circular class="swiper-inner c1" current="{{monthView.current}}" bindchange="handleMonthTabChange">
+          <swiper-item class="main" wx:for="{{3}}" wx:key="*this">
+            <!-- <view class="e"></view> -->
+            <view class="calendar-row" wx:for="{{monthView.cal[item]}}" wx:key="id" wx:for-item="i" wx:for-index="j">
+              <view wx:for="{{i.value}}"
+                class="{{(j === 0 && item.value > 7 || j > 2 && item.value < 7) ? 'gray': (item.isToday ? 'today':'')}}">
+                {{item.value}}</view>
+            </view>
+          </swiper-item>
+        </swiper>
+        <template is="control"></template>
+      </view>
+      <view class="a-container">
+        <view class="activity bg">
+          <view class="title">
+            <image class="icon cal" src="../../assets/calendar.png"></image>本月活动
+          </view>
+          <view class="dv dv2"></view>
+          <block wx:if="{{!loading}}">
+            <view wx:if="{{month_data.length}}" class="list">
+              <view wx:for="{{month_data}}" wx:key="id">
+                # <text class="day">{{item.date}}</text>日 <span class="title">{{item.name}}</span>
+              </view>
+            </view>
+            <template is="empty-img" wx:else></template>
+          </block>
+          <template is="loading" data="{{fail}}" wx:else></template>
+        </view>
+      </view>
+    </view>
+    <view class="tab2" id="tab2">
+      <view class="calendar-wrapper">
+        <view class="calendar-row h">
+          <view wx:for="MTWTFSS" wx:key="*this">{{item}}</view>
+        </view>
+
+        <swiper circular class="swiper-inner c2" current="{{weekView.current}}" bindchange="handleWeekTabChange">
+          <swiper-item class="main" wx:for="{{3}}" wx:key="*this">
+            <!-- <view class="e"></view> -->
+            <view class="calendar-row">
+              <view wx:for="{{weekView.cal[item]}}" class="{{item.isToday ? 'today':''}}">
+                {{item.value}}</view>
+            </view>
+          </swiper-item>
+        </swiper>
+        <template is="control"></template>
+      </view>
+      <view class="a-container">
+        <view class="activity bg week">
+          <block wx:if="{{!loading}}">
+            <block wx:if="{{week_data.length}}">
+              <view class="detail-item" wx:for="{{week_data}}" data-url="{{item.link}}" wx:key="id" bindtap="goto">
+                <view class="day">{{item.day}}</view>
+                <view class="detail">
+                  <view class="name">
+                    <image mode="scaleToFill" src="../../assets/icon-name.png"></image><text>{{item.name}}</text>
+                    <view wx:if="{{item.link}}" class="goto">
+                      <image mode="scaleToFill" src="../../assets/icon-goto.png"></image>
+                    </view>
+                  </view>
+                  <view class="time">
+                    <image mode="scaleToFill" src="../../assets/icon-time.png"></image><text>{{item.time}}</text>
+                  </view>
+                  <view class="location">
+                    <image mode="scaleToFill" src="../../assets/icon-location.png"></image><text>{{item.place}}</text>
+                  </view>
+                  <view class="owner" wx:if="{{item.cond}}">
+                    <image mode="scaleToFill" src="../../assets/icon-beizhu.png"></image><text>{{item.cond}}</text>
+                  </view>
+                </view>
+              </view>
+            </block>
+            <template is="empty-img" wx:else></template>
+          </block>
+          <template is="loading" data="{{fail}}" wx:else></template>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="copyright">Copyright © iBeiKe Team 2021. By Hunsh, Yuoyuo.</view>

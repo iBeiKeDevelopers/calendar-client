@@ -1,0 +1,5 @@
+<view class="title">关于iBeiKe</view>
+<view class="text">iBeiKe成立自2001年，是由热心学生组建的学生技术团队，北京科技大学学生会机构之一。现有产品：贝城社区、pt校内资源站、<navigator target="miniProgram" open-type="navigate" app-id="wx6521e461088f381f"  version="release">北科课表</navigator>、<navigator target="miniProgram" open-type="navigate" app-id="wx115fb21441b3ada8"  version="release">贝壳王</navigator>等。</view>
+<view class="text" bindtap="copy">欢迎关注iBeiKe微信公众号：ustb_iBeiKe。</view>
+<view class="title">如何发布活动</view>
+<view class="text">对于尚未获得授权的组织单位，发布内容请与iBeiKe或校学生会取得联系以获取发布权限。</view>

@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/about/about"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#2A81CA",
+    "navigationBarTitleText": "北科日程",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#2A81CA"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
