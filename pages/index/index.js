@@ -44,15 +44,11 @@ Page({
     start.setMinutes(0)
     start.setHours(0)
     type = type === 'week' ? 'week' : 'month'
-    if (this.data.cache[type][start.getTime()] !== undefined) {
-
-      if (now) {
-        this.setData({
-          [type === 'week' ? 'week_data' : 'month_data']: this.data.cache[type][start.getTime()]
-        })
-        this.updateHeight()
-      }
-      return
+    if (now  && this.data.cache[type][start.getTime()] !== undefined) {
+      this.setData({
+        [type === 'week' ? 'week_data' : 'month_data']: this.data.cache[type][start.getTime()]
+      })
+      this.updateHeight()
     }
     if (now) {
       this.setData({
@@ -104,7 +100,7 @@ Page({
   updateHeight() {
     wx.nextTick(() => {
       let query = wx.createSelectorQuery();
-      query.select(this.data.tab?'#tab2':'#tab1').boundingClientRect(rect => {
+      query.select(this.data.tab ? '#tab2' : '#tab1').boundingClientRect(rect => {
         let height = rect.height;
         if (height)
           this.setData({
