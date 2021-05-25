@@ -76,7 +76,6 @@ Page({
         i.time = `${i.time_from.getHours()}: ${m1} —— ${i.time_to.getHours()}: ${m2}`
         i.date = i.time_from.getDate()
         i.day = "周" + "日一二三四五六" [i.time_from.getDay()]
-        i.wkday = "0123456" [i.time_from.getDay()]
       }
       this.setData({
         ['cache.' + type + '.' + String(start.getTime())]: result.data
@@ -121,6 +120,7 @@ Page({
         url: '../web/web?url=' + e.currentTarget.dataset.url,
       })
   },
+
   updateCalendar(year, month, index, init = false) {
     const startDay = (new Date(year, month, 1));
     this.doRequest('month', startDay, init);
@@ -180,21 +180,6 @@ Page({
     this.setData({
       [i]: result
     })
-  },
-  //scrollTo([i.time_from.getDay()])
-  scrollTo(wkday) {
-    var me = this;
-    var query = wx.createSelectorQuery().in(me);
-    query.selectViewport().scrollOffset()
-    query.select(wkday).boundingClientRect();
-    query.exec(function (res) {
-      console.log(res);
-      var miss = res[0].scrollTop + res[1].top - 10;
-      wx.pageScrollTo({
-        scrollTop: miss,
-        duration: 300
-      });
-    });
   },
   // 事件处理函数
   onLoad() {

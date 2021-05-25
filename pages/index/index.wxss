@@ -461,7 +461,3 @@ page,
   height: 20px;
   width: 60px;
 }
-
-.scoll{
-  background-color: #2A81CA;
-}
