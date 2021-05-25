@@ -96,34 +96,36 @@
         <template is="control"></template>
       </view>
       <view class="a-container">
-        <view class="activity bg week">
-          <block wx:if="{{!loading}}">
-            <block wx:if="{{week_data.length}}">
-              <view class="detail-item" wx:for="{{week_data}}" data-url="{{item.link}}" wx:key="id" bindtap="goto">
-                <view class="day">{{item.day}}</view>
-                <view class="detail">
-                  <view class="name">
-                    <image mode="scaleToFill" src="../../assets/icon-name.png"></image><text>{{item.name}}</text>
-                    <view wx:if="{{item.link}}" class="goto">
-                      <image mode="scaleToFill" src="../../assets/icon-goto.png"></image>
+        <scroll-view class="scoll" scroll-y style="height: 400rpx;">
+          <view class="activity bg week">
+            <block wx:if="{{!loading}}">
+              <block wx:if="{{week_data.length}}">
+                <view class="detail-item" wx:for="{{week_data}}" data-url="{{item.link}}" wx:key="id" bindtap="goto">
+                  <view class="day">{{item.day}}</view>
+                  <view class="detail">
+                    <view class="name">
+                      <image mode="scaleToFill" src="../../assets/icon-name.png"></image><text>{{item.name}}</text>
+                      <view wx:if="{{item.link}}" class="goto">
+                        <image mode="scaleToFill" src="../../assets/icon-goto.png"></image>
+                      </view>
+                    </view>
+                    <view class="time">
+                      <image mode="scaleToFill" src="../../assets/icon-time.png"></image><text>{{item.time}}</text>
+                    </view>
+                    <view class="location">
+                      <image mode="scaleToFill" src="../../assets/icon-location.png"></image><text>{{item.place}}</text>
+                    </view>
+                    <view class="owner" wx:if="{{item.cond}}">
+                      <image mode="scaleToFill" src="../../assets/icon-beizhu.png"></image><text>{{item.cond}}</text>
                     </view>
                   </view>
-                  <view class="time">
-                    <image mode="scaleToFill" src="../../assets/icon-time.png"></image><text>{{item.time}}</text>
-                  </view>
-                  <view class="location">
-                    <image mode="scaleToFill" src="../../assets/icon-location.png"></image><text>{{item.place}}</text>
-                  </view>
-                  <view class="owner" wx:if="{{item.cond}}">
-                    <image mode="scaleToFill" src="../../assets/icon-beizhu.png"></image><text>{{item.cond}}</text>
-                  </view>
                 </view>
-              </view>
+              </block>
+              <template is="empty-img" wx:else></template>
             </block>
-            <template is="empty-img" wx:else></template>
-          </block>
-          <template is="loading" data="{{fail}}" wx:else></template>
-        </view>
+            <template is="loading" data="{{fail}}" wx:else></template>
+          </view>
+        </scroll-view>
       </view>
     </view>
   </view>
