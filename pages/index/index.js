@@ -6,6 +6,10 @@ Page({
   data: {
     loading: true,
     fail: false,
+    studyWeek: {
+      "name": "",
+      "week": 0
+    },
     monthView: {
       current: 0,
       tab: 0,
@@ -205,7 +209,8 @@ Page({
     day.setDate(day.getDate() + 1 - (day.getUTCDay() == 0 ? 7 : day.getUTCDay()));
     this.setData({
       'weekView.now': day,
-      'weekView.week': utils.getWeek(day)
+      'weekView.week': utils.getWeek(day),
+      "studyWeek": utils.getStudyWeek(day)
     })
     this.updateWeek(this.data.weekView.now, 0, true);
     this.updateWeek(new Date((new Date()).setDate(this.data.weekView.now.getDate() + 7)), 1);
@@ -241,7 +246,8 @@ Page({
     this.setData({
       monthText: week_start.getMonth() === week_end.getMonth() ? utils.getMonth(week_start.getMonth()) : `${utils.getMonthShort(week_start.getMonth())}/${utils.getMonthShort(week_end.getMonth())}`,
       'weekView.week': utils.getWeek(this.data.weekView.now),
-      'weekView.tab': e.detail.current
+      'weekView.tab': e.detail.current,
+      "studyWeek": utils.getStudyWeek(week_start)
     })
     this.doRequest('week', this.data.weekView.now, true)
     let index;

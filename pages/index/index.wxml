@@ -29,7 +29,12 @@
       <view class="week {{tab === 1 ? 'selected':''}}">第<span class="n">{{weekView.week}}</span>周</view>
       <view class="d">
         <view class="month">{{monthText}}</view>
+        <view class="y-wrapper">
         <view class="year">{{year}}</view>
+      <view class="studyweek {{tab === 1 ? 'selected':''}}" wx:if="{{studyWeek.week != 0}}">
+        <view class="a">第{{studyWeek.week}}教学周</view>
+        <view class="b">{{studyWeek.name}}</view>
+      </view></view>
       </view>
     </view>
     <open-data class="avatar" type="userAvatarUrl"></open-data>

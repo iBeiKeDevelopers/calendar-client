@@ -7,6 +7,22 @@ const getWeek = (day) => {
   const onejan = new Date(day.getFullYear(), 0, 1);
   return Math.ceil((((day.getTime() - onejan.getTime()) / 86400000) + onejan.getDay() + 1) / 7);
 }
+const calendar = require('./calendar_data')
+for (const i of calendar) {
+  i.start = new Date(i.start)
+  i.end = new Date(i.end)
+}
+const getStudyWeek = (day) => {
+  for (const i of calendar) {
+    if (i.start <= day && day <= i.end) {
+      return {
+        "name": i.name,
+        "week": Math.ceil((((day.getTime() - i.start.getTime()) / 86400000) + i.start.getDay() + 1) / 7)
+      }
+    }
+  }
+  return {"name": "", "week": 0}
+}
 const request = (options) => {
   return new Promise((resolve, reject) => {
     wx.request({
@@ -37,5 +53,6 @@ module.exports = {
   getMonthShort,
   getYear,
   getWeek,
+  getStudyWeek,
   request
 }

@@ -125,20 +125,21 @@ page,
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0);
   display: block;
   border-radius: 18px;
   width: 0;
   height: 0;
-  transition: 0.15s all;
+  width: calc(100rpx + 36px);
+  height: 30px;
+  transition: 0.15s transform;
   transition-timing-function: ease-in;
   transition-delay: 0.15s;
 }
 
 .nav>view.selected::before,
 .nav>view.selected::after {
-  width: calc(100rpx + 36px);
-  height: 30px;
+  transform: translate(-50%, -50%) scale(1);
   transition-delay: 0s;
   transition-timing-function: ease-out;
 }
@@ -464,4 +465,31 @@ page,
 
 .scoll{
   background-color: #2A81CA;
+  }
+.y-wrapper {
+  height: 48px;
+  display: flex;
+}
+.studyweek {
+  display: flex;
+  align-self: flex-start;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-left: 8px;
+  opacity: 0;
+  transition: 0.15s opacity;
+  transition-timing-function: ease-in;
+  transition-delay: 0s;
+}
+.studyweek .a {
+  font-size: 20px;
+}
+.studyweek .b {
+  font-size: 12px;
+}
+.studyweek.selected {
+  transition-delay: 0.15s;
+  transition-timing-function: ease-out;
+  opacity: 1;
 }
