@@ -463,9 +463,6 @@ page,
   width: 60px;
 }
 
-.scoll{
-  background-color: #2A81CA;
-  }
 .y-wrapper {
   height: 48px;
   display: flex;
