@@ -5,17 +5,6 @@
     <view>暂无活动</view>
   </view>
 </template>
-<template name="loading">
-  <view wx:if="{{fail}}" class="network" bindtap="refresh">
-    <image mode="aspectFit" src="../../assets/network.png"></image>
-    <view>网络错误</view>
-    <view style="margin-top:4px">左右划一下日历就可以重试了</view>
-  </view>
-  <view wx:else class="loading">
-    <image mode="aspectFit" src="../../assets/loading.gif"></image>
-    <view>请等待</view>
-  </view>
-</template>
 <template name="control">
   <view class="control">
     <image mode="aspectFit" src="../../assets/left-arrow.png"></image>
@@ -43,6 +32,7 @@
   <view class="nav">
     <view class="{{tab === 0 ? 'selected':''}}" data-id="0" bindtap="handleTabClick">Month</view>
     <view class="{{tab === 1 ? 'selected':''}}" data-id="1" bindtap="handleTabClick">Week</view>
+    <view class="subscribe" bindtap="toManager">订阅管理</view>
     <image class="ibeike" mode="aspectFit" src="/assets/ibeike.png" bindtap="showHelp"></image>
   </view>
 
@@ -79,7 +69,8 @@
             </view>
             <template is="empty-img" wx:else></template>
           </block>
-          <template is="loading" data="{{fail}}" wx:else></template>
+          <loading fail="{{fail}}" text="左右划一下日历就可以重试了" wx:else />
+          <!-- <template is="loading" data="{{fail}}" wx:else></template> -->
         </view>
       </view>
     </view>
@@ -113,6 +104,9 @@
                       <image mode="scaleToFill" src="../../assets/icon-goto.png"></image>
                     </view>
                   </view>
+                  <view class="owner">
+                    <image mode="scaleToFill" src="../../assets/icon-owner.png"></image><text>{{item.owner}}</text>
+                  </view>
                   <view class="time">
                     <image mode="scaleToFill" src="../../assets/icon-time.png"></image><text>{{item.time}}</text>
                   </view>
@@ -122,12 +116,15 @@
                   <view class="owner" wx:if="{{item.cond}}">
                     <image mode="scaleToFill" src="../../assets/icon-beizhu.png"></image><text>{{item.cond}}</text>
                   </view>
+                  <view class="tags" wx:if="{{item.tags.length}}">
+                      <text class="tag" wx:for="{{item.tags}}" bindtap="goToManagerItem" data-name="{{item}}"># {{item}}</text>
+                  </view>
                 </view>
               </view>
             </block>
             <template is="empty-img" wx:else></template>
           </block>
-          <template is="loading" data="{{fail}}" wx:else></template>
+          <loading fail="{{fail}}" text="左右划一下日历就可以重试了" wx:else />
         </view>
       </view>
     </view>

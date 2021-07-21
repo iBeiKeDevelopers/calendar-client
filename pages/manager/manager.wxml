@@ -1,0 +1,14 @@
+<view class="title">订阅管理</view>
+<view class="tip">在有活动上新的时候发送提醒</view>
+
+<loading wx:if="{{loading}}" class="load" fail="{{fail}}" bind:refresh="fetchData" />
+
+<view class="list" wx:else>
+  <view wx:for="{{data}}">
+    <view class="name" bindtap="goToDetail" data-name="{{item.name}}">{{item.name}}</view>
+    <view class="form-switch-material {{item.subscribed ? 'checked' : ''}}" data-name="{{item.name}}" bindtap="subscribe" hover-class="none">
+      <view class="line"></view>
+      <view class="ball"></view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,9 @@
+<view wx:if="{{fail}}" class="network" bindtap="refresh">
+  <image class="image" mode="aspectFit" src="../assets/network.png"></image>
+  <view>网络错误</view>
+  <view class="text">{{text}}</view>
+</view>
+<view wx:else class="loading">
+  <image class="image" mode="aspectFit" src="../assets/loading.gif"></image>
+  <view>请等待</view>
+</view>

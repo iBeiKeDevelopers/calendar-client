@@ -48,7 +48,7 @@ Page({
     start.setMinutes(0)
     start.setHours(0)
     type = type === 'week' ? 'week' : 'month'
-    if (now  && this.data.cache[type][start.getTime()] !== undefined) {
+    if (now && this.data.cache[type][start.getTime()] !== undefined) {
       this.setData({
         [type === 'week' ? 'week_data' : 'month_data']: this.data.cache[type][start.getTime()]
       })
@@ -61,17 +61,10 @@ Page({
       })
       this.updateHeight()
     }
-    utils.request({
-      url: '/v1/GetEventList',
-      method: 'GET',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      data: {
-        type,
-        start: start.getTime()
-      }
-    }).then((result) => {
+    utils.request.get('/v1/events', {
+      type,
+      start: start.getTime()
+    },{login_required: false}).then((result) => {
       for (let i of result.data) {
         i.time_from = new Date(i.time_from)
         i.time_to = new Date(i.time_to)
@@ -101,6 +94,11 @@ Page({
       }
     })
   },
+  toManager() {
+    wx.navigateTo({
+      url: '../manager/manager',
+    })
+  },
   updateHeight() {
     wx.nextTick(() => {
       let query = wx.createSelectorQuery();
@@ -111,6 +109,13 @@ Page({
             calendarHeight: height
           })
       }).exec();
+    })
+  },
+  goToManagerItem(e) {
+    const name = e.currentTarget.dataset.name
+    const type = "tag"
+    wx.navigateTo({
+      url: `../manager/item?type=${type}&name=${name}`,
     })
   },
   showHelp() {

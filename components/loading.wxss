@@ -1,0 +1,22 @@
+.loading,.network {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: .8em;
+}
+
+.network .image {
+  height: 60rpx;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.loading .image {
+  height: 108rpx;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.text {
+  margin-top: 4px;
+  padding-bottom: 24px;
+}

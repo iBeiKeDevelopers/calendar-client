@@ -1,0 +1,27 @@
+/* pages/manager.wxss */
+@import "shareStyle.wxss";
+
+.list {
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.list>view {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 8px 8px;
+}
+
+.list>view>.name {
+  min-width: 4em;
+  text-align: left;
+}
+
+.tip {
+  margin-top: 8px;
+}

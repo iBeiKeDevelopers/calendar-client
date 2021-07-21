@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/about/about"
+    "pages/about/about",
+    "pages/manager/manager",
+    "pages/manager/item"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -9,6 +11,9 @@
     "navigationBarTitleText": "北科日程",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#2A81CA"
+  },
+  "usingComponents": {
+    "loading": "components/loading"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

@@ -1,0 +1,65 @@
+/* pages/manager/item.wxss */
+@import "shareStyle.wxss";
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 8px 8px;
+}
+
+.title .right {
+  display: flex;
+  align-items: center;
+}
+
+.form-switch-material {
+  transform: scale(.8);
+  transform-origin: center;
+}
+
+.title .tip {
+  font-size: 12px;
+  margin-right: 8px;
+}
+
+.list {
+  padding: 0 8px;
+}
+
+.list .itme>view {
+  line-height: 1.6;
+}
+
+.list .item:first-child {
+  margin-top: 36px;
+  border-top: 1px solid #fff;
+}
+
+.list .item {
+  padding: 20px 0;
+  border-bottom: 1px solid #fff;
+}
+
+.list .name {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 4px;
+}
+
+.list .place {
+  margin-left: .6em;
+}
+
+.list .tags {
+  display: block !important;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.list .tag {
+  font-size: .8em;
+  display: inline-block;
+  margin-right: 1em;
+}

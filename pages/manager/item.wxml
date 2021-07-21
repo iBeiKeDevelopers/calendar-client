@@ -1,0 +1,46 @@
+<view class="title">
+  <view class="name" bindtap="goToDetail">{{name}}</view>
+  <view class="right">
+    <text class="tip">新活动提醒</text>
+    <view class="form-switch-material {{subscribed ? 'checked' : ''}}" data-name="{{item.name}}" bindtap="subscribe"
+      hover-class="none">
+      <view class="line"></view>
+      <view class="ball"></view>
+    </view>
+  </view>
+</view>
+  <loading wx:if="{{loading}}" class="load" fail="{{fail}}" bind:refresh="fetchData" />
+<view wx:else class="list">
+  <view class="item" wx:for="{{activities}}" data-url="{{item.link}}" wx:key="id" bindtap="goto">
+    <view class="name">{{item.name}}</view>
+    <view class="owner">{{item.owner}}</view>
+    <view class="meta"><text class="time">{{item.time}}</text><text class="place">{{item.place}}</text></view>
+
+    <view class="cond">{{item.cond}}</view>
+    <view class="tags" wx:if="{{item.tags.length}}">
+      <text class="tag" wx:for="{{item.tags}}" bindtap="goToManagerItem" data-name="{{item}}"># {{item}}</text>
+    </view>
+
+    <!-- <view class="day">{{item.day}}</view>
+    <view class="detail">
+      <view class="name">
+        <image mode="scaleToFill" src="../../assets/icon-name.png"></image><text>{{item.name}}</text>
+        <view wx:if="{{item.link}}" class="goto">
+          <image mode="scaleToFill" src="../../assets/icon-goto.png"></image>
+        </view>
+      </view>
+      <view class="time">
+        <image mode="scaleToFill" src="../../assets/icon-time.png"></image><text>{{item.time}}</text>
+      </view>
+      <view class="location">
+        <image mode="scaleToFill" src="../../assets/icon-location.png"></image><text>{{item.place}}</text>
+      </view>
+      <view class="owner" wx:if="{{item.cond}}">
+        <image mode="scaleToFill" src="../../assets/icon-beizhu.png"></image><text>{{item.cond}}</text>
+      </view>
+      <view class="tags" wx:if="{{item.tags.length}}">
+        <text class="tag" wx:for="{{item.tags}}" bindtap="goToManagerItem" data-name="{{item}}"># {{item}}</text>
+      </view>
+    </view> -->
+  </view>
+</view>
