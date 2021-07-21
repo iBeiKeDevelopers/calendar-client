@@ -43,8 +43,8 @@ const getStudyWeek = (day) => {
 }
 class Request {
   constructor() {
-    // this.baseURL = 'https://calendar.ibeike.hunsh.net'
-    this.baseURL = 'http://127.0.0.1:60031'
+    this.baseURL = 'https://calendar.ibeike.hunsh.net'
+    // this.baseURL = 'http://127.0.0.1:60031'
   }
   async __getCode() {
     let token = wx.getStorageSync('token')
@@ -64,10 +64,10 @@ class Request {
           }, {
             login_required: false
           }).then(res => {
-            wx.setStorage({
-              key: 'token',
-              data: res.token
-            })
+            wx.setStorageSync(
+              'token',
+              res.token
+            )
             resolve(res.token)
           }).catch(e => {
             reject(e)
@@ -118,14 +118,16 @@ class Request {
                 return
               }
               vm.login().then(
-                vm.request(method, url, data, {
-                  login_required,
-                  retry: true
-                }).then(r => {
-                  resolve(r)
-                }).catch(e => {
-                  reject(e)
-                })
+                () => {
+                  vm.request(method, url, data, {
+                    login_required,
+                    retry: true
+                  }).then(r => {
+                    resolve(r)
+                  }).catch(e => {
+                    reject(e)
+                  })
+                }
               ).catch(e => {
                 reject(e)
               })
